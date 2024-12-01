@@ -14,7 +14,7 @@
                             <li class="list-group-item">
                                 <strong>Carteirinha:</strong> {{ $pagamento->carteirinha->aluno->nome }}</li>
                             <li class="list-group-item"><strong>Data de
-                                    Pagamento:</strong> {{ $pagamento->data_pagamento }}</li>
+                                    Pagamento:</strong> {{ $pagamento->data_pagamento_formatted }}</li>
                             <li class="list-group-item"><strong>Valor:</strong>
                                 R$ {{ number_format($pagamento->valor, 2, ',', '.') }}</li>
                             <li class="list-group-item"><strong>Recebedor:</strong> {{ $pagamento->recebedor }}</li>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="mb-3">
                         <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-primary">Editar</a>
-                        <a href="{{ route('pagamentos.index') }}" class="btn btn-secondary">Voltar</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Voltar</a>
                     </div>
                 </div>
             </div>

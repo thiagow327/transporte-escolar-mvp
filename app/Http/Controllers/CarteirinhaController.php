@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 
 class CarteirinhaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $carteirinhas = Carteirinha::with('aluno')->paginate(10);
+        $query = Carteirinha::with('aluno');
+
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->whereHas('aluno', function ($q) use ($search) {
+                $q->where('nome', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $carteirinhas = $query->paginate(10);
+
         return view('carteirinhas.index', compact('carteirinhas'));
     }
 
@@ -24,7 +34,7 @@ class CarteirinhaController extends Controller
     {
         $request->validate([
             'aluno_id' => 'required|exists:alunos,id',
-            'data_validade' => 'required|date',
+            'vencimento_dia' => 'required|date',
         ]);
 
         Carteirinha::create($request->all());
@@ -33,6 +43,7 @@ class CarteirinhaController extends Controller
 
     public function show(Carteirinha $carteirinha)
     {
+        $carteirinha = Carteirinha::with(['aluno', 'pagamentos'])->findOrFail($carteirinha->id);
         return view('carteirinhas.show', compact('carteirinha'));
     }
 
@@ -46,7 +57,7 @@ class CarteirinhaController extends Controller
     {
         $request->validate([
             'aluno_id' => 'required|exists:alunos,id',
-            'data_validade' => 'required|date'
+            'vencimento_dia' => 'required|date'
         ]);
 
         $carteirinha->update($request->all());
