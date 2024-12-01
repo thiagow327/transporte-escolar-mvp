@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 
 class PagamentoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pagamentos = Pagamento::with('carteirinha')->paginate(10);
+        $query = Pagamento::with('carteirinha.aluno');
+
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->whereHas('carteirinha.aluno', function ($q) use ($search) {
+                $q->where('nome', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $pagamentos = $query->paginate(10);
+
         return view('pagamentos.index', compact('pagamentos'));
     }
 
