@@ -25,7 +25,7 @@
                     </div>
                     <div class="mb-3">
                         <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-primary">Editar</a>
-                        <a href="{{ route('pagamentos.index') }}" class="btn btn-secondary">Voltar</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Voltar</a>
                     </div>
                 </div>
             </div>
