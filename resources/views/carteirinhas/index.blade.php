@@ -23,7 +23,7 @@
                         <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th>Data de Validade</th>
+                            <th>Dia de Vencimento</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
@@ -31,7 +31,7 @@
                         @foreach($carteirinhas as $carteirinha)
                             <tr>
                                 <td>{{ $carteirinha->aluno->nome }}</td>
-                                <td>{{ $carteirinha->data_validade_formatted }}</td>
+                                <td>{{ $carteirinha->vencimento_dia }}</td>
                                 <td>
                                     <a href="{{ route('carteirinhas.show', $carteirinha->id) }}"
                                        class="btn btn-primary btn-sm">Detalhes</a>
