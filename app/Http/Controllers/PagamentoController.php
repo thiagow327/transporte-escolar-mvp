@@ -24,12 +24,15 @@ class PagamentoController extends Controller
     {
         $request->validate([
             'carteirinha_id' => 'required|exists:carteirinhas,id',
-            'valor' => 'required|numeric|min:0',
             'data_pagamento' => 'required|date',
+            'valor' => 'required|numeric',
+            'recebedor' => 'required|string',
+            'tipo_pagamento' => 'required|string',
+            'observacoes' => 'nullable|string',
         ]);
 
         Pagamento::create($request->all());
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento cadastrado com sucesso!');
+        return redirect()->route('pagamentos.index')->with('success', 'Pagamento criado com sucesso.');
     }
 
     public function show(Pagamento $pagamento)

@@ -46,7 +46,7 @@ class CarteirinhaController extends Controller
     {
         $request->validate([
             'aluno_id' => 'required|exists:alunos,id',
-            'data_validade' => 'required|date',
+            'data_validade' => 'required|date'
         ]);
 
         $carteirinha->update($request->all());
