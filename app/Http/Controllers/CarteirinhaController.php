@@ -33,6 +33,7 @@ class CarteirinhaController extends Controller
 
     public function show(Carteirinha $carteirinha)
     {
+        $carteirinha = Carteirinha::with(['aluno', 'pagamentos'])->findOrFail($carteirinha->id);
         return view('carteirinhas.show', compact('carteirinha'));
     }
 
