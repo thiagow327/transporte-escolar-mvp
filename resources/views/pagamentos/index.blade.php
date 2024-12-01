@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ $pagamento->carteirinha->aluno->nome }}</td>
                                 <td>R$ {{ number_format($pagamento->valor, 2, ',', '.') }}</td>
-                                <td>{{ $pagamento->data_pagamento }}</td>
+                                <td>{{ $pagamento->data_pagamento_formatted }}</td>
                                 <td>
                                     <a href="{{ route('pagamentos.show', $pagamento->id) }}"
                                        class="btn btn-primary btn-sm">Detalhes</a>

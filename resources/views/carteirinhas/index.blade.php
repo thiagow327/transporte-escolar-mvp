@@ -22,7 +22,7 @@
                         @foreach($carteirinhas as $carteirinha)
                             <tr>
                                 <td>{{ $carteirinha->aluno->nome }}</td>
-                                <td>{{ $carteirinha->data_validade }}</td>
+                                <td>{{ $carteirinha->data_validade_formatted }}</td>
                                 <td>
                                     <a href="{{ route('carteirinhas.show', $carteirinha->id) }}"
                                        class="btn btn-primary btn-sm">Detalhes</a>
