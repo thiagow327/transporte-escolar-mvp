@@ -1,25 +1,23 @@
 <x-app-layout>
     <div class="container mt-4">
-        <h2>{{ isset($aluno) ? 'Editar Aluno' : 'Novo Aluno' }}</h2>
-        <form method="POST" action="{{ isset($aluno) ? route('alunos.update', $aluno->id) : route('alunos.store') }}">
+        <h2>Editar Aluno</h2>
+        <form method="POST" action="{{ route('alunos.update', $aluno->id) }}">
             @csrf
-            @if(isset($aluno))
-                @method('PUT')
-            @endif
+            @method('PUT')
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{ $aluno->nome ?? old('nome') }}"
-                       required>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{ $aluno->nome }}" required>
             </div>
             <div class="mb-3">
-                <label for="responsavel" class="form-label">Responsável</label>
+                <label for="responsavel" class="form-label
+                ">Responsável</label>
                 <input type="text" class="form-control" id="responsavel" name="responsavel"
-                       value="{{ $aluno->responsavel ?? old('responsavel') }}" required>
+                       value="{{ $aluno->responsavel }}" required>
             </div>
             <div class="mb-3">
                 <label for="contato_responsavel" class="form-label">Contato do Responsável</label>
                 <input type="text" class="form-control" id="contato_responsavel" name="contato_responsavel"
-                       value="{{ $aluno->contato_responsavel ?? old('contato_responsavel') }}" required>
+                       value="{{ $aluno->contato_responsavel }}" required>
             </div>
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
