@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pagamento extends Model
 {
+    protected $fillable = [
+        'carteirinha_id',
+        'valor',
+        'data_pagamento',
+    ];
+
     public function carteirinha()
     {
         return $this->belongsTo(Carteirinha::class);
