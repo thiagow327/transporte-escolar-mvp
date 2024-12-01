@@ -14,7 +14,7 @@
                             <li class="list-group-item">
                                 <strong>Carteirinha:</strong> {{ $pagamento->carteirinha->aluno->nome }}</li>
                             <li class="list-group-item"><strong>Data de
-                                    Pagamento:</strong> {{ $pagamento->data_pagamento }}</li>
+                                    Pagamento:</strong> {{ $pagamento->data_pagamento_formatted }}</li>
                             <li class="list-group-item"><strong>Valor:</strong>
                                 R$ {{ number_format($pagamento->valor, 2, ',', '.') }}</li>
                             <li class="list-group-item"><strong>Recebedor:</strong> {{ $pagamento->recebedor }}</li>

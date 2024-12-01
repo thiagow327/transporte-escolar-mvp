@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Carteirinha extends Model
@@ -19,5 +20,10 @@ class Carteirinha extends Model
     public function pagamentos()
     {
         return $this->hasMany(Pagamento::class);
+    }
+
+    public function getDataValidadeFormattedAttribute()
+    {
+        return Carbon::parse($this->data_validade)->format('d-m-Y');
     }
 }
