@@ -10,6 +10,15 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="container mt-4">
                     <a href="{{ route('alunos.create') }}" class="btn btn-success mb-3">Novo Aluno</a>
+
+                    <form method="GET" action="{{ route('alunos.index') }}" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Pesquisar por aluno..."
+                                   value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        </div>
+                    </form>
+
                     <table class="table table-striped">
                         <thead>
                         <tr>

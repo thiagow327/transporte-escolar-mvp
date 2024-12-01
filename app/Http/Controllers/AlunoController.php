@@ -10,9 +10,16 @@ class AlunoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $alunos = Aluno::with('carteirinha')->paginate(10);
+        $query = Aluno::query();
+
+        if ($request->has('search') && $request->search) {
+            $query->where('nome', 'LIKE', "%{$request->search}%");
+        }
+
+        $alunos = $query->paginate(10);
+
         return view('alunos.index', compact('alunos'));
     }
 

@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 
 class CarteirinhaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $carteirinhas = Carteirinha::with('aluno')->paginate(10);
+        $query = Carteirinha::with('aluno');
+
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->whereHas('aluno', function ($q) use ($search) {
+                $q->where('nome', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $carteirinhas = $query->paginate(10);
+
         return view('carteirinhas.index', compact('carteirinhas'));
     }
 
