@@ -12,7 +12,8 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
+        $alunos = Aluno::with('carteirinha')->paginate(10);
+        return view('alunos.index', compact('alunos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alunos.create');
     }
 
     /**
@@ -28,7 +29,15 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'data_nascimento' => 'required|date',
+            'responsavel' => 'required|string|max:255',
+            'contato_responsavel' => 'required|string|max:255',
+        ]);
+
+        $aluno = Aluno::create($request->all());
+        return redirect()->route('alunos.index')->with('success', 'Aluno cadastrado com sucesso!');
     }
 
     /**
