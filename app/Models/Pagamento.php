@@ -10,6 +10,9 @@ class Pagamento extends Model
         'carteirinha_id',
         'valor',
         'data_pagamento',
+        'tipo_pagamento',
+        'recebedor',
+        'observacoes',
     ];
 
     public function carteirinha()

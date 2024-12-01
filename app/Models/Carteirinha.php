@@ -8,8 +8,7 @@ class Carteirinha extends Model
 {
     protected $fillable = [
         'aluno_id',
-        'numero',
-        'validade',
+        'data_validade',
     ];
 
     public function aluno()
