@@ -31,7 +31,6 @@ class AlunoController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'data_nascimento' => 'required|date',
             'responsavel' => 'required|string|max:255',
             'contato_responsavel' => 'required|string|max:255',
         ]);
@@ -45,7 +44,7 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
-        //
+        return view('alunos.show', compact('aluno'));
     }
 
     /**
@@ -53,7 +52,7 @@ class AlunoController extends Controller
      */
     public function edit(Aluno $aluno)
     {
-        //
+        return view('alunos.edit', compact('aluno'));
     }
 
     /**
@@ -61,7 +60,14 @@ class AlunoController extends Controller
      */
     public function update(Request $request, Aluno $aluno)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'responsavel' => 'required|string|max:255',
+            'contato_responsavel' => 'required|string|max:255',
+        ]);
+
+        $aluno->update($request->all());
+        return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso!');
     }
 
     /**
@@ -69,6 +75,7 @@ class AlunoController extends Controller
      */
     public function destroy(Aluno $aluno)
     {
-        //
+        $aluno->delete();
+        return redirect()->route('alunos.index')->with('success', 'Aluno excluído com sucesso!');
     }
 }
