@@ -9,6 +9,9 @@ class Carteirinha extends Model
     protected $fillable = [
         'aluno_id',
         'vencimento_dia',
+        'vencimento_dia',
+        'escola',
+        'horario',
     ];
 
     public function aluno()
