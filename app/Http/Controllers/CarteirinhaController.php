@@ -10,13 +10,14 @@ class CarteirinhaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carteirinha::with('aluno');
+        $query = Carteirinha::query();
 
-        if ($request->has('search') && $request->search) {
-            $search = $request->search;
-            $query->whereHas('aluno', function ($q) use ($search) {
-                $q->where('nome', 'LIKE', "%{$search}%");
-            });
+        if ($request->filled('escola')) {
+            $query->where('escola', 'LIKE', '%' . $request->escola . '%');
+        }
+
+        if ($request->filled('horario')) {
+            $query->where('horario', $request->horario);
         }
 
         $carteirinhas = $query->paginate(10);
