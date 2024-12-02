@@ -12,10 +12,23 @@
                     <a href="{{ route('carteirinhas.create') }}" class="btn btn-success mb-3">Nova Carteirinha</a>
 
                     <form method="GET" action="{{ route('carteirinhas.index') }}" class="mb-3">
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Pesquisar por aluno..."
-                                   value="{{ request('search') }}">
-                            <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" name="escola" class="form-control" placeholder="Filtrar por escola"
+                                       value="{{ request('escola') }}">
+                            </div>
+                            <div class="col-md-4">
+                                <select name="horario" class="form-select">
+                                    <option value="">Filtrar por horário</option>
+                                    <option value="manha" {{ request('horario') == 'manha' ? 'selected' : '' }}>Manhã
+                                    </option>
+                                    <option value="tarde" {{ request('horario') == 'tarde' ? 'selected' : '' }}>Tarde
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
                         </div>
                     </form>
 
@@ -23,7 +36,7 @@
                         <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th>Data de Validade</th>
+                            <th>Dia de Vencimento</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
@@ -31,7 +44,7 @@
                         @foreach($carteirinhas as $carteirinha)
                             <tr>
                                 <td>{{ $carteirinha->aluno->nome }}</td>
-                                <td>{{ $carteirinha->data_validade_formatted }}</td>
+                                <td>{{ $carteirinha->vencimento_dia }}</td>
                                 <td>
                                     <a href="{{ route('carteirinhas.show', $carteirinha->id) }}"
                                        class="btn btn-primary btn-sm">Detalhes</a>

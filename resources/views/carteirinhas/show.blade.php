@@ -14,8 +14,8 @@
                         <li class="list-group-item"><strong>Aluno:</strong> {{ $carteirinha->aluno->nome }}</li>
                         <li class="list-group-item"><strong>Ativo:</strong> {{ $carteirinha->ativo ? 'Sim' : 'Não' }}
                         </li>
-                        <li class="list-group-item"><strong>Data de
-                                Validade:</strong> {{ $carteirinha->data_validade_formatted }}</li>
+                        <li class="list-group-item"><strong>Dia de
+                                Vencimento:</strong> {{ $carteirinha->vencimento_dia }}</li>
                         </li>
                     </ul>
 

@@ -10,13 +10,14 @@ class CarteirinhaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carteirinha::with('aluno');
+        $query = Carteirinha::query();
 
-        if ($request->has('search') && $request->search) {
-            $search = $request->search;
-            $query->whereHas('aluno', function ($q) use ($search) {
-                $q->where('nome', 'LIKE', "%{$search}%");
-            });
+        if ($request->filled('escola')) {
+            $query->where('escola', 'LIKE', '%' . $request->escola . '%');
+        }
+
+        if ($request->filled('horario')) {
+            $query->where('horario', $request->horario);
         }
 
         $carteirinhas = $query->paginate(10);
@@ -32,13 +33,17 @@ class CarteirinhaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'aluno_id' => 'required|exists:alunos,id',
-            'data_validade' => 'required|date',
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'idade' => 'required|integer',
+            'vencimento_dia' => 'required|integer|min:1|max:31',
+            'escola' => 'required|string|max:255',
+            'horario' => 'required|in:manha,tarde',
         ]);
 
-        Carteirinha::create($request->all());
-        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha cadastrada com sucesso!');
+        Carteirinha::create($validated);
+
+        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha criada com sucesso!');
     }
 
     public function show(Carteirinha $carteirinha)
@@ -55,12 +60,16 @@ class CarteirinhaController extends Controller
 
     public function update(Request $request, Carteirinha $carteirinha)
     {
-        $request->validate([
-            'aluno_id' => 'required|exists:alunos,id',
-            'data_validade' => 'required|date'
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'idade' => 'required|integer',
+            'vencimento_dia' => 'required|integer|min:1|max:31',
+            'escola' => 'required|string|max:255',
+            'horario' => 'required|in:manha,tarde',
         ]);
 
-        $carteirinha->update($request->all());
+        $carteirinha->update($validated);
+
         return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha atualizada com sucesso!');
     }
 
