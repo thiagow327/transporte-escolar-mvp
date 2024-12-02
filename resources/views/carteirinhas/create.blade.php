@@ -16,26 +16,49 @@
                             @method('PUT')
                         @endif
                         <div class="mb-3">
-                            <label for="aluno_id" class="form-label">Aluno</label>
-                            <select class="form-select" id="aluno_id" name="aluno_id" required>
-                                <option value="" disabled {{ isset($carteirinha) ? '' : 'selected' }}>Selecione um
-                                    aluno
+                            <label for="nome" class="form-label">Nome do Aluno</label>
+                            <input type="text" class="form-control" id="nome" name="nome"
+                                   value="{{ old('nome', $carteirinha->nome ?? '') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="idade" class="form-label">Idade</label>
+                            <input type="number" class="form-control" id="idade" name="idade"
+                                   value="{{ old('idade', $carteirinha->idade ?? '') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="vencimento_dia" class="form-label">Dia de Vencimento</label>
+                            <input type="number" class="form-control" id="vencimento_dia" name="vencimento_dia"
+                                   min="1" max="31"
+                                   value="{{ old('vencimento_dia', $carteirinha->vencimento_dia ?? '') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="escola" class="form-label">Escola</label>
+                            <input type="text" class="form-control" id="escola" name="escola"
+                                   value="{{ old('escola', $carteirinha->escola ?? '') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="horario" class="form-label">Horário</label>
+                            <select class="form-select" id="horario" name="horario" required>
+                                <option
+                                    value="manha" {{ old('horario', $carteirinha->horario ?? '') == 'manha' ? 'selected' : '' }}>
+                                    Manhã
                                 </option>
-                                @foreach($alunos as $aluno)
-                                    <option
-                                            value="{{ $aluno->id }}" {{ isset($carteirinha) && $carteirinha->aluno_id == $aluno->id ? 'selected' : '' }}>
-                                        {{ $aluno->nome }}
-                                    </option>
-                                @endforeach
+                                <option
+                                    value="tarde" {{ old('horario', $carteirinha->horario ?? '') == 'tarde' ? 'selected' : '' }}>
+                                    Tarde
+                                </option>
                             </select>
                         </div>
+
                         <div class="mb-3">
-                            <label for="data_validade" class="form-label">Data de Validade</label>
-                            <input type="date" class="form-control" id="data_validade" name="data_validade"
-                                   value="{{ $carteirinha->data_validade ?? old('data_validade') }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-success">Salvar</button>
+                            <button type="submit"
+                                    class="btn btn-success">{{ isset($carteirinha) ? 'Atualizar' : 'Criar' }}
+                                Carteirinha
+                            </button>
                             <a href="{{ route('carteirinhas.index') }}" class="btn btn-secondary">Voltar</a>
                         </div>
                     </form>
