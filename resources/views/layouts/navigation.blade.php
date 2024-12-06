@@ -16,9 +16,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('alunos.index')" :active="request()->routeIs('alunos.index')">
-                        {{ __('Alunos') }}
-                    </x-nav-link>
+                    {{--<x-nav-link :href="route('alunos.index')" :active="request()->routeIs('alunos.index')">--}}
+                    {{--{{ __('Alunos') }}--}}
+                    {{--</x-nav-link>--}}
 
                     <x-nav-link :href="route('carteirinhas.index')" :active="request()->routeIs('carteirinhas.index')">
                         {{ __('Carteirinhas') }}
