@@ -9,28 +9,80 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="container mt-4">
-                    <form action="{{ route('carteirinhas.update', $carteirinha->id) }}" method="POST">
+                    <form method="POST" action="{{ route('carteirinhas.update', $carteirinha->id) }}">
                         @csrf
                         @method('PUT')
-                        <div class="mb-3">
-                            <label for="aluno_id" class="form-label">Aluno</label>
-                            <select name="aluno_id" id="aluno_id" class="form-select">
-                                @foreach($alunos as $aluno)
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="aluno_nome" class="form-label">Nome do Aluno</label>
+                                <input type="text" class="form-control" id="aluno_nome" name="aluno_nome"
+                                       value="{{ old('aluno_nome', $carteirinha->aluno->nome) }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="aluno_idade" class="form-label">Idade do Aluno</label>
+                                <input type="number" class="form-control" id="aluno_idade" name="aluno_idade"
+                                       value="{{ old('aluno_idade', $carteirinha->aluno->idade) }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="responsavel" class="form-label">Responsável</label>
+                                <input type="text" class="form-control" id="responsavel" name="responsavel"
+                                       value="{{ old('responsavel', $carteirinha->aluno->responsavel) }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contato_responsavel" class="form-label">Contato do Responsável</label>
+                                <input type="text" class="form-control" id="contato_responsavel"
+                                       name="contato_responsavel"
+                                       value="{{ old('contato_responsavel', $carteirinha->aluno->contato_responsavel) }}"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="vencimento_dia" class="form-label">Dia de Vencimento</label>
+                                <input type="number" class="form-control" id="vencimento_dia" name="vencimento_dia"
+                                       min="1" max="31"
+                                       value="{{ old('vencimento_dia', $carteirinha->vencimento_dia) }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="escola" class="form-label">Escola</label>
+                                <select class="form-select" id="escola" name="escola" required>
                                     <option
-                                        value="{{ $aluno->id }}" {{ $aluno->id == $carteirinha->aluno_id ? 'selected' : '' }}>
-                                        {{ $aluno->nome }}
+                                        value="a" {{ old('escola', $carteirinha->escola) == 'a' ? 'selected' : '' }}>A
                                     </option>
-                                @endforeach
-                            </select>
+                                    <option
+                                        value="b" {{ old('escola', $carteirinha->escola) == 'b' ? 'selected' : '' }}>B
+                                    </option>
+                                    <option
+                                        value="c" {{ old('escola', $carteirinha->escola) == 'c' ? 'selected' : '' }}>C
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="horario" class="form-label">Horário</label>
+                                <select class="form-select" id="horario" name="horario" required>
+                                    <option
+                                        value="manha" {{ old('horario', $carteirinha->horario) == 'manha' ? 'selected' : '' }}>
+                                        Manhã
+                                    </option>
+                                    <option
+                                        value="tarde" {{ old('horario', $carteirinha->horario) == 'tarde' ? 'selected' : '' }}>
+                                        Tarde
+                                    </option>
+                                </select>
+                            </div>
                         </div>
+
                         <div class="mb-3">
-                            <label for="data_validade" class="form-label
-                ">Data de Validade</label>
-                            <input type="date" name="data_validade" id="data_validade" class="form-control"
-                                   value="{{ $carteirinha->data_validade }}">
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="submit" class="btn btn-success">Atualizar Carteirinha</button>
                             <a href="{{ route('carteirinhas.index') }}" class="btn btn-secondary">Voltar</a>
                         </div>
                     </form>
