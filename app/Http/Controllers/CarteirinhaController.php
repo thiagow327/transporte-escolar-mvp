@@ -34,16 +34,30 @@ class CarteirinhaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'idade' => 'required|integer',
+            'aluno_nome' => 'required|string|max:255',
+            'aluno_idade' => 'required|integer',
+            'responsavel' => 'required|string|max:255',
+            'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
             'escola' => 'required|string|max:255',
             'horario' => 'required|in:manha,tarde',
         ]);
 
-        Carteirinha::create($validated);
+        $aluno = Aluno::create([
+            'nome' => $validated['aluno_nome'],
+            'idade' => $validated['aluno_idade'],
+            'responsavel' => $validated['responsavel'],
+            'contato_responsavel' => $validated['contato_responsavel'],
+        ]);
 
-        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha criada com sucesso!');
+        Carteirinha::create([
+            'aluno_id' => $aluno->id,
+            'vencimento_dia' => $validated['vencimento_dia'],
+            'escola' => $validated['escola'],
+            'horario' => $validated['horario'],
+        ]);
+
+        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha e aluno criados com sucesso!');
     }
 
     public function show(Carteirinha $carteirinha)
@@ -75,7 +89,10 @@ class CarteirinhaController extends Controller
 
     public function destroy(Carteirinha $carteirinha)
     {
+        $aluno = $carteirinha->aluno;
         $carteirinha->delete();
-        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha excluída com sucesso!');
+        $aluno->delete();
+
+        return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha e aluno excluídos com sucesso!');
     }
 }
