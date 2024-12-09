@@ -24,9 +24,9 @@
                         {{ __('Carteirinhas') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('pagamentos.index')" :active="request()->routeIs('pagamentos.index')">
-                        {{ __('Pagamentos') }}
-                    </x-nav-link>
+                    {{--<x-nav-link :href="route('pagamentos.index')" :active="request()->routeIs('pagamentos.index')">--}}
+                    {{--{{ __('Pagamentos') }}--}}
+                    {{--</x-nav-link>--}}
                 </div>
             </div>
 
