@@ -35,18 +35,24 @@ class CarteirinhaController extends Controller
     {
         $validated = $request->validate([
             'aluno_nome' => 'required|string|max:255',
-            'aluno_idade' => 'required|integer',
+            'aluno_nascimento' => 'required|date',
             'responsavel' => 'required|string|max:255',
+            'endereco' => 'required|string|max:255',
             'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
             'escola' => 'required|string|max:255',
             'horario' => 'required|in:manha,tarde',
         ]);
 
+        $data_nascimento = \Carbon\Carbon::parse($validated['aluno_nascimento']);
+        $idade = $data_nascimento->age;
+
         $aluno = Aluno::create([
             'nome' => $validated['aluno_nome'],
-            'idade' => $validated['aluno_idade'],
+            'data_nascimento' => $validated['aluno_nascimento'],
+            'idade' => $idade,
             'responsavel' => $validated['responsavel'],
+            'endereco' => $validated['endereco'],
             'contato_responsavel' => $validated['contato_responsavel'],
         ]);
 
@@ -75,14 +81,29 @@ class CarteirinhaController extends Controller
     public function update(Request $request, Carteirinha $carteirinha)
     {
         $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'idade' => 'required|integer',
+            'aluno_nome' => 'required|string|max:255',
+            'aluno_nascimento' => 'required|date',
+            'responsavel' => 'required|string|max:255',
+            'endereco' => 'required|string|max:255',
+            'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
             'escola' => 'required|string|max:255',
             'horario' => 'required|in:manha,tarde',
         ]);
 
-        $carteirinha->update($validated);
+        $carteirinha->aluno->update([
+            'nome' => $validated['aluno_nome'],
+            'data_nascimento' => $validated['aluno_nascimento'],
+            'responsavel' => $validated['responsavel'],
+            'endereco' => $validated['endereco'],
+            'contato_responsavel' => $validated['contato_responsavel'],
+        ]);
+
+        $carteirinha->update([
+            'vencimento_dia' => $validated['vencimento_dia'],
+            'escola' => $validated['escola'],
+            'horario' => $validated['horario'],
+        ]);
 
         return redirect()->route('carteirinhas.index')->with('success', 'Carteirinha atualizada com sucesso!');
     }
