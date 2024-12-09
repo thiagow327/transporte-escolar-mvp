@@ -24,10 +24,11 @@ class PagamentoController extends Controller
         return view('pagamentos.index', compact('pagamentos'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $carteirinhas = Carteirinha::all();
-        return view('pagamentos.create', compact('carteirinhas'));
+        $carteirinhaSelecionada = $request->input('carteirinha_id');
+        return view('pagamentos.create', compact('carteirinhas', 'carteirinhaSelecionada'));
     }
 
     public function store(Request $request)
@@ -42,7 +43,10 @@ class PagamentoController extends Controller
         ]);
 
         Pagamento::create($request->all());
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento criado com sucesso.');
+
+        return redirect()
+            ->route('carteirinhas.show', $request->carteirinha_id)
+            ->with('success', 'Pagamento criado com sucesso!');
     }
 
     public function show(Pagamento $pagamento)
@@ -70,7 +74,11 @@ class PagamentoController extends Controller
 
     public function destroy(Pagamento $pagamento)
     {
+        $carteirinhaId = $pagamento->carteirinha_id;
         $pagamento->delete();
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento excluído com sucesso!');
+
+        return redirect()
+            ->route('carteirinhas.show', $carteirinhaId)
+            ->with('success', 'Pagamento excluído com sucesso!');
     }
 }

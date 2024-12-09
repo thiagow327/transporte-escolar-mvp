@@ -13,11 +13,24 @@
 
                     <form method="GET" action="{{ route('carteirinhas.index') }}" class="mb-3">
                         <div class="row">
-                            <div class="col-md-4">
-                                <input type="text" name="escola" class="form-control" placeholder="Filtrar por escola"
-                                       value="{{ request('escola') }}">
+                            <!-- Filtro por nome do aluno -->
+                            <div class="col-md-3">
+                                <input type="text" name="nome" class="form-control" placeholder="Filtrar por nome"
+                                       value="{{ request('nome') }}">
                             </div>
-                            <div class="col-md-4">
+
+                            <!-- Filtro por escola --><!-- Filtro por escola -->
+                            <div class="col-md-3">
+                                <select name="escola" class="form-select">
+                                    <option value="">Filtrar por escola</option>
+                                    <option value="a" {{ request('escola') == 'a' ? 'selected' : '' }}>A</option>
+                                    <option value="b" {{ request('escola') == 'b' ? 'selected' : '' }}>B</option>
+                                    <option value="c" {{ request('escola') == 'c' ? 'selected' : '' }}>C</option>
+                                </select>
+                            </div>
+
+                            <!-- Filtro por horário -->
+                            <div class="col-md-3">
                                 <select name="horario" class="form-select">
                                     <option value="">Filtrar por horário</option>
                                     <option value="manha" {{ request('horario') == 'manha' ? 'selected' : '' }}>Manhã
@@ -26,7 +39,9 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+
+                            <!-- Botão de filtro -->
+                            <div class="col-md-3">
                                 <button type="submit" class="btn btn-primary">Filtrar</button>
                             </div>
                         </div>
@@ -36,6 +51,8 @@
                         <thead>
                         <tr>
                             <th>Aluno</th>
+                            <th>Escola</th>
+                            <th>Horário</th>
                             <th>Dia de Vencimento</th>
                             <th>Ações</th>
                         </tr>
@@ -44,6 +61,8 @@
                         @foreach($carteirinhas as $carteirinha)
                             <tr>
                                 <td>{{ $carteirinha->aluno->nome }}</td>
+                                <td>{{ $carteirinha->escola }}</td>
+                                <td>{{ $carteirinha->horario }}</td>
                                 <td>{{ $carteirinha->vencimento_dia }}</td>
                                 <td>
                                     <a href="{{ route('carteirinhas.show', $carteirinha->id) }}"

@@ -22,10 +22,11 @@
                                 <input type="text" class="form-control" id="aluno_nome" name="aluno_nome"
                                        value="{{ old('aluno_nome') }}" required>
                             </div>
+
                             <div class="col-md-6">
-                                <label for="aluno_idade" class="form-label">Idade do Aluno</label>
-                                <input type="number" class="form-control" id="aluno_idade" name="aluno_idade"
-                                       value="{{ old('aluno_idade') }}" required>
+                                <label for="aluno_nascimento" class="form-label">Data de Nascimento</label>
+                                <input type="date" class="form-control" id="aluno_nascimento" name="aluno_nascimento"
+                                       value="{{ old('aluno_nascimento') }}" required>
                             </div>
                         </div>
 
@@ -40,6 +41,11 @@
                                 <input type="text" class="form-control" id="contato_responsavel"
                                        name="contato_responsavel"
                                        value="{{ old('contato_responsavel') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="endereco" class="form-label">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" name="endereco"
+                                       value="{{ old('endereco', $aluno->endereco ?? '') }}">
                             </div>
                         </div>
 
@@ -72,6 +78,10 @@
                                     <option
                                         value="tarde" {{ old('horario', $carteirinha->horario ?? '') == 'tarde' ? 'selected' : '' }}>
                                         Tarde
+                                    </option>
+                                    <option
+                                        value="integral" {{ old('horario', $carteirinha->horario ?? '') == 'integral' ? 'selected' : '' }}>
+                                        Integral
                                     </option>
                                 </select>
                             </div>
