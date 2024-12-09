@@ -18,6 +18,9 @@
                             <tr>
                                 <th>Nome do Aluno</th>
                                 <th>Escola</th>
+                                <th>Horário</th>
+                                <th>Reponsavel</th>
+                                <th>Contato do Responsável</th>
                                 <th>Vencimento</th>
                             </tr>
                             </thead>
@@ -26,6 +29,9 @@
                                 <tr>
                                     <td>{{ $carteirinha->aluno->nome }}</td>
                                     <td>{{ $carteirinha->escola }}</td>
+                                    <td>{{ $carteirinha->horario }}</td>
+                                    <td>{{ $carteirinha->aluno->responsavel }}</td>
+                                    <td>{{ $carteirinha->aluno->contato_responsavel }}</td>
                                     <td>{{ $carteirinha->vencimento_dia }}</td>
                                 </tr>
                             @endforeach
