@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('responsavel');
             $table->string('contato_responsavel');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
