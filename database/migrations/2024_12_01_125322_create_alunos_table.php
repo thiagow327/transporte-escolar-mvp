@@ -13,9 +13,10 @@ return new class extends Migration {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('responsavel');
             $table->date('data_nascimento');
+            $table->string('responsavel');
             $table->string('contato_responsavel');
+            $table->string('endereco');
             $table->timestamps();
             $table->softDeletes();
         });
