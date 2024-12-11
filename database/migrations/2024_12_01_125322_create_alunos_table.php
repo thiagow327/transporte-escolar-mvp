@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nome');
             $table->string('responsavel');
+            $table->date('data_nascimento');
             $table->string('contato_responsavel');
             $table->timestamps();
             $table->softDeletes();
