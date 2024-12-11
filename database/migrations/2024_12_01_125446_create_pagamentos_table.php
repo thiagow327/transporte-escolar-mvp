@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('tipo_pagamento');
             $table->text('observacoes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

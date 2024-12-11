@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->boolean('ativo')->default(true);
             $table->date('data_validade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
