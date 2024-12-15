@@ -72,8 +72,8 @@
                                         EMF - Galdino Lopes Chagas
                                     </option>
                                     <option
-                                        value="Colégio Roldhum" {{ request('escola') == 'Colégio Roldhum' ? 'selected' : '' }}>
-                                        Colégio Roldhum
+                                        value="Colégio Rodhum" {{ request('escola') == 'Colégio Rodhum' ? 'selected' : '' }}>
+                                        Colégio Rodhum
                                     </option>
                                 </select>
                             </div>
