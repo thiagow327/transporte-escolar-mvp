@@ -64,12 +64,18 @@ class PagamentoController extends Controller
     {
         $request->validate([
             'carteirinha_id' => 'required|exists:carteirinhas,id',
-            'valor' => 'required|numeric|min:0',
             'data_pagamento' => 'required|date',
+            'valor' => 'required|numeric',
+            'recebedor' => 'required|string',
+            'tipo_pagamento' => 'required|string',
+            'observacoes' => 'nullable|string',
         ]);
 
         $pagamento->update($request->all());
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento atualizado com sucesso!');
+
+        return redirect()
+            ->route('carteirinhas.show', $request->carteirinha_id)
+            ->with('success', 'Pagamento atualizado com sucesso!');
     }
 
     public function destroy(Pagamento $pagamento)

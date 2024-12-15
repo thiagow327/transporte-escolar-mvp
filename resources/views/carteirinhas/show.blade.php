@@ -103,6 +103,8 @@
                                                       method="POST">
                                                     @csrf
                                                     @method('PUT')
+                                                    <input type="hidden" name="carteirinha_id"
+                                                           value="{{ $carteirinha->id }}">
                                                     <div class="mb-3">
                                                         <label for="valor" class="form-label">Valor <span
                                                                 class="text-danger">*</span></label>
