@@ -54,16 +54,56 @@
                                 <label for="escola" class="form-label">Escola</label>
                                 <select class="form-select" id="escola" name="escola" required>
                                     <option
-                                        value="a" {{ old('escola', $carteirinha->escola ?? '') == 'a' ? 'selected' : '' }}>
-                                        A
+                                        value="CCA - Todos Irmãos" {{ old('escola', $carteirinha->escola ?? '') == 'CCA - Todos Irmãos' ? 'selected' : '' }}>
+                                        CCA - Todos Irmãos
                                     </option>
                                     <option
-                                        value="b" {{ old('escola', $carteirinha->escola ?? '') == 'b' ? 'selected' : '' }}>
-                                        B
+                                        value="CCA - Ana Maria" {{ old('escola', $carteirinha->escola ?? '') == 'CCA - Ana Maria' ? 'selected' : '' }}>
+                                        CCA - Ana Maria
                                     </option>
                                     <option
-                                        value="c" {{ old('escola', $carteirinha->escola ?? '') == 'c' ? 'selected' : '' }}>
-                                        C
+                                        value="CEI - Castelo Branco" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Castelo Branco' ? 'selected' : '' }}>
+                                        CEI - Castelo Branco
+                                    </option>
+                                    <option
+                                        value="CEI - Novo Amanhecer" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Novo Amanhecer' ? 'selected' : '' }}>
+                                        CEI - Novo Amanhecer
+                                    </option>
+                                    <option
+                                        value="CEI - Pequeno Anjo" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Pequeno Anjo' ? 'selected' : '' }}>
+                                        CEI - Pequeno Anjo
+                                    </option>
+                                    <option
+                                        value="CEI - Pingo de Orvalho" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Pingo de Orvalho' ? 'selected' : '' }}>
+                                        CEI - Pingo de Orvalho
+                                    </option>
+                                    <option
+                                        value="CEI - Vem ser feliz" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Vem ser feliz' ? 'selected' : '' }}>
+                                        CEI - Vem ser feliz
+                                    </option>
+                                    <option
+                                        value="CEI - Vila Nina" {{ old('escola', $carteirinha->escola ?? '') == 'CEI - Vila Nina' ? 'selected' : '' }}>
+                                        CEI - Vila Nina
+                                    </option>
+                                    <option
+                                        value="EMEI - Tito Lívio Ferreira" {{ old('escola', $carteirinha->escola ?? '') == 'EMEI - Tito Lívio Ferreira' ? 'selected' : '' }}>
+                                        EMEI - Tito Lívio Ferreira
+                                    </option>
+                                    <option
+                                        value="EMF - Raul Fernandes" {{ old('escola', $carteirinha->escola ?? '') == 'EMF - Raul Fernandes' ? 'selected' : '' }}>
+                                        EMF - Raul Fernandes
+                                    </option>
+                                    <option
+                                        value="EMF - Geraldo Sessor Junior" {{ old('escola', $carteirinha->escola ?? '') == 'EMF - Geraldo Sessor Junior' ? 'selected' : '' }}>
+                                        EMF - Geraldo Sessor Junior
+                                    </option>
+                                    <option
+                                        value="EMF - Galdino Lopes Chagas" {{ old('escola', $carteirinha->escola ?? '') == 'EMF - Galdino Lopes Chagas' ? 'selected' : '' }}>
+                                        EMF - Galdino Lopes Chagas
+                                    </option>
+                                    <option
+                                        value="Colégio Roldhum" {{ old('escola', $carteirinha->escola ?? '') == 'Colégio Roldhum' ? 'selected' : '' }}>
+                                        Colégio Roldhum
                                     </option>
                                 </select>
                             </div>
