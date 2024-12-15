@@ -123,14 +123,21 @@
                                                             Pagamento</label>
                                                         <select class="form-select" id="tipo_pagamento"
                                                                 name="tipo_pagamento" required>
-                                                            <option value="dinheiro" {{ $pagamento->tipo_pagamento === 'dinheiro' ? 'selected' : '' }}>
+                                                            <option
+                                                                value="pix" {{ $pagamento->tipo_pagamento === 'pix' ? 'selected' : '' }}>
+                                                                Pix
+                                                            </option>
+                                                            <option
+                                                                value="dinheiro" {{ $pagamento->tipo_pagamento === 'dinheiro' ? 'selected' : '' }}>
                                                                 Dinheiro
                                                             </option>
-                                                            <option value="cartao" {{ $pagamento->tipo_pagamento === 'cartao' ? 'selected' : '' }}>
-                                                                Cartão
+                                                            <option
+                                                                value="cartao_debito" {{ $pagamento->tipo_pagamento === 'cartao_debito' ? 'selected' : '' }}>
+                                                                Cartão de Débito
                                                             </option>
-                                                            <option value="transferencia" {{ $pagamento->tipo_pagamento === 'transferencia' ? 'selected' : '' }}>
-                                                                Transferência
+                                                            <option
+                                                                value="cartao_credito" {{ $pagamento->tipo_pagamento === 'cartao_credito' ? 'selected' : '' }}>
+                                                                Cartão de Crédito
                                                             </option>
                                                         </select>
                                                     </div>
