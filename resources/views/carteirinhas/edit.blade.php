@@ -112,8 +112,8 @@
                                             EMF - Galdino Lopes Chagas
                                         </option>
                                         <option
-                                            value="Colégio Roldhum" {{ old('escola', $carteirinha->escola) == 'Colégio Roldhum' ? 'selected' : '' }}>
-                                            Colégio Roldhum
+                                            value="Colégio Rodhum" {{ old('escola', $carteirinha->escola) == 'Colégio Rodhum' ? 'selected' : '' }}>
+                                            Colégio Rodhum
                                         </option>
                                     </select>
                                 </div>
