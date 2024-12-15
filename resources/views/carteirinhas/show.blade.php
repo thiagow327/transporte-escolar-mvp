@@ -66,7 +66,7 @@
                             @foreach($carteirinha->pagamentos as $pagamento)
                                 <tr>
                                     <td>R$ {{ number_format($pagamento->valor, 2, ',', '.') }}</td>
-                                    <td>{{ $pagamento->data_pagamento }}</td>
+                                    <td>{{ $pagamento->data_pagamento_formatted }}</td>
                                     <td>{{ $pagamento->recebedor }}</td>
                                     <td>{{ $pagamento->tipo_pagamento }}</td>
                                     <td>
