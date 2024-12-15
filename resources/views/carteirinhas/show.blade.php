@@ -100,37 +100,46 @@
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="mb-3">
-                                                        <label for="valor" class="form-label">Valor</label>
-                                                        <input type="number" step="0.01" class="form-control"
+                                                        <label for="valor" class="form-label">Valor <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="number" step="0.01" class="form-control required"
                                                                id="valor" name="valor" value="{{ $pagamento->valor }}"
                                                                required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="data_pagamento" class="form-label">Data de
-                                                            Pagamento</label>
-                                                        <input type="date" class="form-control" id="data_pagamento"
-                                                               name="data_pagamento"
+                                                        <label for="data_pagamento" class="form-label">Data de Pagamento
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="date" class="form-control required"
+                                                               id="data_pagamento" name="data_pagamento"
                                                                value="{{ $pagamento->data_pagamento }}" required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="recebedor" class="form-label">Recebedor</label>
-                                                        <input type="text" class="form-control" id="recebedor"
+                                                        <label for="recebedor" class="form-label">Recebedor <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control required" id="recebedor"
                                                                name="recebedor" value="{{ $pagamento->recebedor }}"
                                                                required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="tipo_pagamento" class="form-label">Tipo de
-                                                            Pagamento</label>
-                                                        <select class="form-select" id="tipo_pagamento"
+                                                        <label for="tipo_pagamento" class="form-label">Tipo de Pagamento
+                                                            <span class="text-danger">*</span></label>
+                                                        <select class="form-select required" id="tipo_pagamento"
                                                                 name="tipo_pagamento" required>
-                                                            <option value="dinheiro" {{ $pagamento->tipo_pagamento === 'dinheiro' ? 'selected' : '' }}>
+                                                            <option
+                                                                value="pix" {{ $pagamento->tipo_pagamento === 'pix' ? 'selected' : '' }}>
+                                                                Pix
+                                                            </option>
+                                                            <option
+                                                                value="dinheiro" {{ $pagamento->tipo_pagamento === 'dinheiro' ? 'selected' : '' }}>
                                                                 Dinheiro
                                                             </option>
-                                                            <option value="cartao" {{ $pagamento->tipo_pagamento === 'cartao' ? 'selected' : '' }}>
-                                                                Cartão
+                                                            <option
+                                                                value="cartao_debito" {{ $pagamento->tipo_pagamento === 'cartao_debito' ? 'selected' : '' }}>
+                                                                Cartão de Débito
                                                             </option>
-                                                            <option value="transferencia" {{ $pagamento->tipo_pagamento === 'transferencia' ? 'selected' : '' }}>
-                                                                Transferência
+                                                            <option
+                                                                value="cartao_credito" {{ $pagamento->tipo_pagamento === 'cartao_credito' ? 'selected' : '' }}>
+                                                                Cartão de Crédito
                                                             </option>
                                                         </select>
                                                     </div>
@@ -177,22 +186,26 @@
                             @csrf
                             <input type="hidden" name="carteirinha_id" value="{{ $carteirinha->id }}">
                             <div class="mb-3">
-                                <label for="valor" class="form-label">Valor</label>
-                                <input type="number" step="0.01" class="form-control" id="valor" name="valor"
+                                <label for="valor" class="form-label">Valor <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" class="form-control required" id="valor" name="valor"
                                        required>
                             </div>
                             <div class="mb-3">
-                                <label for="data_pagamento" class="form-label">Data de Pagamento</label>
-                                <input type="date" class="form-control" id="data_pagamento" name="data_pagamento"
+                                <label for="data_pagamento" class="form-label">Data de Pagamento <span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control required" id="data_pagamento"
+                                       name="data_pagamento" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recebedor" class="form-label">Recebedor <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control required" id="recebedor" name="recebedor"
                                        required>
                             </div>
                             <div class="mb-3">
-                                <label for="recebedor" class="form-label">Recebedor</label>
-                                <input type="text" class="form-control" id="recebedor" name="recebedor" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tipo_pagamento" class="form-label">Tipo de Pagamento</label>
-                                <select class="form-select" id="tipo_pagamento" name="tipo_pagamento" required>
+                                <label for="tipo_pagamento" class="form-label">Tipo de Pagamento <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select required" id="tipo_pagamento" name="tipo_pagamento" required>
                                     <option value="pix">Pix</option>
                                     <option value="dinheiro">Dinheiro</option>
                                     <option value="cartao_debito">Cartão de Débito</option>
@@ -201,8 +214,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="observacoes" class="form-label">Observações</label>
-                                <textarea class="form-control" id="observacoes" name="observacoes"
-                                          rows="3"></textarea>
+                                <textarea class="form-control" id="observacoes" name="observacoes" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
