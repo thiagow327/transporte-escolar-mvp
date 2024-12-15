@@ -57,6 +57,8 @@
                             <tr>
                                 <th>Valor</th>
                                 <th>Data de Pagamento</th>
+                                <th>Recebedor</th>
+                                <th>Tipo de Pagamento</th>
                                 <th>Ações</th>
                             </tr>
                             </thead>
@@ -65,6 +67,8 @@
                                 <tr>
                                     <td>R$ {{ number_format($pagamento->valor, 2, ',', '.') }}</td>
                                     <td>{{ $pagamento->data_pagamento }}</td>
+                                    <td>{{ $pagamento->recebedor }}</td>
+                                    <td>{{ $pagamento->tipo_pagamento }}</td>
                                     <td>
                                         <!-- Botão de Editar -->
                                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
