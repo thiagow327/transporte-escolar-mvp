@@ -12,6 +12,12 @@ class CarteirinhaController extends Controller
     {
         $query = Carteirinha::query();
 
+        if ($request->filled('nome')) {
+            $query->whereHas('aluno', function ($q) use ($request) {
+                $q->where('nome', 'LIKE', '%' . $request->nome . '%');
+            });
+        }
+
         if ($request->filled('escola')) {
             $query->where('escola', 'LIKE', '%' . $request->escola . '%');
         }
