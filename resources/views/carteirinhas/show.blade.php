@@ -122,9 +122,14 @@
                                                     <div class="mb-3">
                                                         <label for="recebedor" class="form-label">Recebedor <span
                                                                 class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control required" id="recebedor"
-                                                               name="recebedor" value="{{ $pagamento->recebedor }}"
-                                                               required>
+                                                        <select class="form-select required" id="recebedor"
+                                                                name="recebedor" required>
+                                                            <option value="Nilson">Nilson</option>
+                                                            <option value="Jean">Jean</option>
+                                                            <option value="Claudia">Claudia</option>
+                                                            <option value="Felipe">Felipe</option>
+                                                            <option value="Evandro">Evandro</option>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="tipo_pagamento" class="form-label">Tipo de Pagamento
@@ -205,8 +210,14 @@
                             <div class="mb-3">
                                 <label for="recebedor" class="form-label">Recebedor <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control required" id="recebedor" name="recebedor"
-                                       required>
+                                <select class="form-select required" id="recebedor" name="recebedor" required>
+                                    <option value="Nilson">Nilson</option>
+                                    <option value="Jean">Jean</option>
+                                    <option value="Claudia">Claudia</option>
+                                    <option value="Felipe">Felipe</option>
+                                    <option value="Evandro">Evandro</option>
+
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="tipo_pagamento" class="form-label">Tipo de Pagamento <span
