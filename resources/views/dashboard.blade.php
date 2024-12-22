@@ -19,9 +19,10 @@
                                 <th>Nome do Aluno</th>
                                 <th>Escola</th>
                                 <th>Horário</th>
-                                <th>Reponsavel</th>
+                                <th>Responsável</th>
                                 <th>Contato do Responsável</th>
                                 <th>Vencimento</th>
+                                <th>Ação</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,6 +34,17 @@
                                     <td>{{ $carteirinha->aluno->responsavel }}</td>
                                     <td>{{ $carteirinha->aluno->contato_responsavel }}</td>
                                     <td>{{ $carteirinha->vencimento_dia }}</td>
+                                    <td>
+                                        @if($carteirinha->aluno->contato_responsavel)
+                                            <a href="https://wa.me/+55{{ $carteirinha->aluno->contato_responsavel }}?text={{ urlencode("Olá, vi que a carteirinha do(a) aluno(a) {$carteirinha->aluno->nome} venceu no dia {$carteirinha->vencimento_dia} e *não identificamos o pagamento*. Poderia verificar, por favor?\n\nAtenciosamente,\nTio Nilson | Tia Claudia | Tio Jean") }}"
+                                               target="_blank"
+                                               class="text-success">
+                                                <i class="bi bi-whatsapp" style="font-size: 1.5rem;"></i>
+                                            </a>
+                                        @else
+                                            <span class="text-muted">Sem contato</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
