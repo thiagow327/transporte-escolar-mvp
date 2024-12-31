@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carteirinha;
 use App\Models\Aluno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class CarteirinhaController extends Controller
 {
@@ -24,6 +25,22 @@ class CarteirinhaController extends Controller
 
         if ($request->filled('horario')) {
             $query->where('horario', $request->horario);
+        }
+
+        if ($request->filled('status')) {
+            $status = $request->status;
+
+            if ($status == 'pendente') {
+                $query->whereDoesntHave('pagamentos', function ($q) {
+                    $q->where('data_pagamento', '>=', Carbon::now()->startOfMonth())
+                        ->where('data_pagamento', '<', Carbon::now()->addMonth()->startOfMonth());
+                });
+            } elseif ($status == 'em-dia') {
+                $query->whereHas('pagamentos', function ($q) {
+                    $q->where('data_pagamento', '>=', Carbon::now()->startOfMonth())
+                        ->where('data_pagamento', '<', Carbon::now()->addMonth()->startOfMonth());
+                });
+            }
         }
 
         $carteirinhas = $query->paginate(10);
