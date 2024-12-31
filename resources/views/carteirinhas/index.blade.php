@@ -14,7 +14,7 @@
                     <form method="GET" action="{{ route('carteirinhas.index') }}" class="mb-3">
                         <div class="row">
                             <!-- Filtro por nome do aluno -->
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="text" name="nome" class="form-control" placeholder="Filtrar por nome"
                                        value="{{ request('nome') }}">
                             </div>
@@ -79,7 +79,7 @@
                             </div>
 
                             <!-- Filtro por horário -->
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <select name="horario" class="form-select">
                                     <option value="">Filtrar por horário</option>
                                     <option value="manha" {{ request('horario') == 'manha' ? 'selected' : '' }}>Manhã
@@ -88,6 +88,19 @@
                                     </option>
                                     <option value="integral" {{ request('horario') == 'integral' ? 'selected' : '' }}>
                                         Integral
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- Filtro por status -->
+                            <div class="col-md-2">
+                                <select name="status" class="form-select">
+                                    <option value="">Filtrar por status</option>
+                                    <option value="pendente" {{ request('status') == 'pendente' ? 'selected' : '' }}>
+                                        Pendente
+                                    </option>
+                                    <option value="em-dia" {{ request('status') == 'em-dia' ? 'selected' : '' }}>
+                                        Em dia
                                     </option>
                                 </select>
                             </div>
@@ -107,6 +120,7 @@
                             <th>Escola</th>
                             <th>Horário</th>
                             <th>Dia de Vencimento</th>
+                            <th>Status</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
@@ -117,6 +131,7 @@
                                 <td>{{ $carteirinha->escola }}</td>
                                 <td>{{ $carteirinha->horario }}</td>
                                 <td>{{ $carteirinha->vencimento_dia }}</td>
+                                <td>{{ $carteirinha->statusPagamento() }}</td>
                                 <td>
                                     <a href="{{ route('carteirinhas.show', $carteirinha->id) }}"
                                        class="btn btn-primary btn-sm">Detalhes</a>
