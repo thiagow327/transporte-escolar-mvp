@@ -21,4 +21,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('pagamentos', \App\Http\Controllers\PagamentoController::class);
 });
 
+use RuntimeException;
+
+Route::get('bom', function () {
+    Bugsnag::notifyException(new RuntimeException("Test error!!"));
+});
+
 require __DIR__ . '/auth.php';
