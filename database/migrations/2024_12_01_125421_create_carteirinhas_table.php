@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('aluno_id')->constrained()->onDelete('cascade');
             $table->boolean('ativo')->default(true);
-            $table->date('data_validade');
+            $table->unsignedTinyInteger('vencimento_dia');
+            $table->string('escola')->nullable();
+            $table->string('horario')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
