@@ -47,7 +47,7 @@ class CarteirinhaController extends Controller
             'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
             'escola' => 'required|string|max:255',
-            'horario' => 'required|in:manha,tarde',
+            'horario' => 'required|in:manha,tarde,integral',
         ]);
 
         $data_nascimento = \Carbon\Carbon::parse($validated['aluno_nascimento']);
@@ -64,6 +64,7 @@ class CarteirinhaController extends Controller
 
         Carteirinha::create([
             'aluno_id' => $aluno->id,
+            'data_validade' => now(),
             'vencimento_dia' => $validated['vencimento_dia'],
             'escola' => $validated['escola'],
             'horario' => $validated['horario'],
