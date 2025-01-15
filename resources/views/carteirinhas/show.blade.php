@@ -41,6 +41,8 @@
                             <h3>Informações da Carteirinha</h3>
                             <div class="mb-3">
                                 <p><strong>Dia de Vencimento:</strong> {{ $carteirinha->vencimento_dia }}</p>
+                                <p><strong>Valor da Mensalidade:</strong>
+                                    R$ {{ number_format($carteirinha->valor_mensalidade, 2, ',', '.') }}</p>
                                 <p><strong>Escola:</strong> {{ $carteirinha->escola }}</p>
                                 <p><strong>Horário:</strong> {{ $carteirinha->horario }}</p>
                             </div>
@@ -109,7 +111,8 @@
                                                         <label for="valor" class="form-label">Valor <span
                                                                 class="text-danger">*</span></label>
                                                         <input type="number" step="0.01" class="form-control required"
-                                                               id="valor" name="valor" value="{{ $pagamento->valor }}"
+                                                               id="valor" name="valor"
+                                                               value="{{ old('valor', $pagamento->valor) }}"
                                                                required>
                                                     </div>
                                                     <div class="mb-3">
@@ -199,7 +202,7 @@
                             <div class="mb-3">
                                 <label for="valor" class="form-label">Valor <span class="text-danger">*</span></label>
                                 <input type="number" step="0.01" class="form-control required" id="valor" name="valor"
-                                       required>
+                                       value="{{ old('valor', $defaultValorMensalidade) }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="data_pagamento" class="form-label">Data de Pagamento <span
