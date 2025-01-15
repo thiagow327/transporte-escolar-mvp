@@ -46,6 +46,7 @@ class CarteirinhaController extends Controller
             'endereco' => 'required|string|max:255',
             'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
+            'valor_mensalidade' => 'required|numeric',
             'escola' => 'required|string|max:255',
             'horario' => 'required|in:manha,tarde,integral',
         ]);
@@ -66,6 +67,7 @@ class CarteirinhaController extends Controller
             'aluno_id' => $aluno->id,
             'data_validade' => now(),
             'vencimento_dia' => $validated['vencimento_dia'],
+            'valor_mensalidade' => $validated['valor_mensalidade'],
             'escola' => $validated['escola'],
             'horario' => $validated['horario'],
         ]);
@@ -76,7 +78,8 @@ class CarteirinhaController extends Controller
     public function show(Carteirinha $carteirinha)
     {
         $carteirinha = Carteirinha::with(['aluno', 'pagamentos'])->findOrFail($carteirinha->id);
-        return view('carteirinhas.show', compact('carteirinha'));
+        $defaultValorMensalidade = $carteirinha->valor_mensalidade; // Get the default value from the carteirinha
+        return view('carteirinhas.show', compact('carteirinha', 'defaultValorMensalidade'));
     }
 
     public function edit(Carteirinha $carteirinha)
