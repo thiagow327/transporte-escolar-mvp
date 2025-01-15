@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="escola" class="form-label">Escola</label>
                                 <select class="form-select" id="escola" name="escola" required>
                                     <option
