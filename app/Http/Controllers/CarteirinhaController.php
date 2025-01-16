@@ -97,6 +97,7 @@ class CarteirinhaController extends Controller
             'endereco' => 'required|string|max:255',
             'contato_responsavel' => 'required|string|max:255',
             'vencimento_dia' => 'required|integer|min:1|max:31',
+            'valor_mensalidade' => 'required|numeric',
             'escola' => 'required|string|max:255',
             'horario' => 'required|in:manha,tarde',
         ]);
@@ -111,6 +112,7 @@ class CarteirinhaController extends Controller
 
         $carteirinha->update([
             'vencimento_dia' => $validated['vencimento_dia'],
+            'valor_mensalidade' => $validated['valor_mensalidade'],
             'escola' => $validated['escola'],
             'horario' => $validated['horario'],
         ]);
