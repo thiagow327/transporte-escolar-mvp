@@ -61,6 +61,14 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="valor_mensalidade" class="form-label">Valor da Mensalidade</label>
+                                    <input type="number" class="form-control" id="valor_mensalidade"
+                                           name="valor_mensalidade"
+                                           value="{{ old('valor_mensalidade', $carteirinha->valor_mensalidade) }}"
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="escola" class="form-label">Escola</label>
                                     <select class="form-select" id="escola" name="escola" required>
                                         <option
